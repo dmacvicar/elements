@@ -41,17 +41,17 @@ Elements C++ GUI library, plus the Cycfi Infra and JSON libraries:
 
 ```
 git clone https://github.com/cycfi/elements.git
-git clone https://github.com/cycfi/infra.git
-git clone https://github.com/cycfi/json.git
 ```
 
-Infra provides some basic groundwork common to Cycfi libraries, including
-Elements. JSON provides Strict, type-safe, c++ to JSON I/O.  It's easiest to
-place your clone of the infra and json libraries in the same directory as
-you have the Elements C++ GUI library.
+The cmake build will automatically fetch and setup:
 
-If you wish to place them somewhere else, then you need to set the cmake
-variables CYCFI_INFRA_ROOT, and CYCFI_JSON_ROOT later (see below).
+* https://github.com/cycfi/infra.git
+* https://github.com/cycfi/json.git
+
+Infra provides some basic groundwork common to Cycfi libraries, including
+Elements. JSON provides Strict, type-safe, c++ to JSON I/O.
+
+If you would like to provide your own checkout, set the cmake variables cycfi_infra_SOURCE_DIR and cycfi_json_SOURCE_DIR.
 
 ### CMake
 
