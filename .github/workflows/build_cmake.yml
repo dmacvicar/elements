@@ -39,8 +39,20 @@ jobs:
           }
 
     steps:
-    - uses: actions/checkout@v1
-
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        path: elements
+    - name: Checkout infra repo
+      uses: actions/checkout@v2
+      with:
+        repository: cycfi/infra
+        path: infra
+    - name: Checkout json repo
+      uses: actions/checkout@v2
+      with:
+        repository: cycfi/json
+        path: json
     - name: Download Ninja and CMake
       id: cmake_and_ninja
       shell: cmake -P {0}
