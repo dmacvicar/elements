@@ -41,16 +41,18 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+      with:
+        path: elements
     - name: Checkout infra repo
       uses: actions/checkout@v2
       with:
         repository: cycfi/infra
-        path: ../infra
+        path: infra
     - name: Checkout json repo
       uses: actions/checkout@v2
       with:
         repository: cycfi/json
-        path: ../json
+        path: json
     - name: Download Ninja and CMake
       id: cmake_and_ninja
       shell: cmake -P {0}
@@ -118,6 +120,7 @@ jobs:
 
     - name: Configure
       shell: cmake -P {0}
+      working-directory: ./elements
       run: |
         set(ENV{CC} ${{ matrix.config.cc }})
         set(ENV{CXX} ${{ matrix.config.cxx }})
@@ -159,6 +162,7 @@ jobs:
 
     - name: Build
       shell: cmake -P {0}
+      working-directory: ./elements
       run: |
         set(ENV{NINJA_STATUS} "[%f/%t %o/sec] ")
 
@@ -219,6 +223,7 @@ jobs:
 
 
     - name: Install Strip
+      working-directory: ./elements
       run: ${{ steps.cmake_and_ninja.outputs.cmake_dir }}/cmake --install build --prefix instdir --strip
 
 
